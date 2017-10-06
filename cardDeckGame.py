@@ -52,7 +52,8 @@ class Player(object):
         for i in range (1, 2):
             self.hand.append(deckList.pop())
             self.totalCardsInHand += 1
-            print "One card drawn from deck"
+            deckList.totalCardsAvailable -= 1
+            print "One card drawn from deck, total avilable cards:", deckList.totalCardsAvailable
             print "Total no of cards in hand is:", self.totalCardsInHand
             print "You need to return a card back in lui of a card drawn"
         return self
