@@ -41,19 +41,20 @@ class Deck(object):
                 # print "Card added in hand is",user.hand[(len(user.hand))-1].suits,":",user.hand[(len(user.hand))-1].cardvalue
             return user.hand
 class Player(object):
-    def __init__(self,name,age):
+    def __init__(self,name,age,deckOBj):
         self.name = name
         self.age = age
         self.hand = []
         self.totalCardsInHand = 0
+        self.deck = deckOBj
         # decklist is obj of deck
-    def drawfromdeck(self,deckList):
+    def drawfromdeck(self):
         print "########Drawing a card from deck!!#######"
         for i in range (1, 2):
-            self.hand.append(deckList.pop())
+            self.hand.append(self.deck.numcards.pop())
             self.totalCardsInHand += 1
-            deckList.totalCardsAvailable -= 1
-            print "One card drawn from deck, total avilable cards:", deckList.totalCardsAvailable
+            self.deck.totalCardsAvailable -= 1
+            print "One card drawn from deck, total avilable cards:", len(self.deck.numcards)
             print "Total no of cards in hand is:", self.totalCardsInHand
             print "You need to return a card back in lui of a card drawn"
         return self
@@ -71,10 +72,10 @@ class Player(object):
 # instance of deck
 deck1 = Deck("deck1")
 # create a player
-player1 = Player("Phil","23")
+player1 = Player("Phil","23", deck1)
 # create a deck and deal
 deck1.createDeck().deal(player1)
 # Players shows the cards
 player1.showcardsinhand()
 # Player draws from deck
-player1.drawfromdeck(deck1.numcards)
+player1.drawfromdeck()
